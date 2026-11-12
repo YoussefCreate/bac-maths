@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bac Tunisie — Règles de maths à retenir</title>
+<meta name="description" content="Formulaire de mathématiques pour le baccalauréat tunisien (4ème année secondaire) : limites, suites, dérivées, intégrales, ln et exp, complexes, géométrie, arithmétique, probabilités.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f6f8; --card:#ffffff; --ink:#1a2130; --muted:#5b6475; --line:#dfe3ea;
+  --fbg:#f0f4fa; --exbg:#fff8e6; --exline:#f0d98a; --head1:#12355b; --head2:#0b2038;
+  --g1:#2274a5; --g2:#2a9d8f; --g3:#e4572e; --g4:#6a4c93; --g5:#c8102e; --g6:#b5770a; --g7:#3a7d44; --g8:#a23b72; --g9:#52606d;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#11141a; --card:#1a1f29; --ink:#eceef3; --muted:#a2abbd; --line:#2b3240;
+         --fbg:#222938; --exbg:#2b2716; --exline:#5c4f1c; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter","Segoe UI",Roboto,Arial,sans-serif;line-height:1.6;font-size:16px}
+header{background:linear-gradient(135deg,var(--head1),var(--head2));color:#fff;padding:32px 16px 24px;text-align:center}
+header h1{margin:0 0 6px;font-size:clamp(1.45rem,4.5vw,2.2rem);font-weight:800}
+header p{margin:0;opacity:.9}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.tab{flex:0 0 auto;border:2px solid var(--c);background:transparent;color:var(--ink);font:inherit;font-weight:700;font-size:.92rem;padding:5px 13px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.tab[aria-selected="true"]{background:var(--c);color:#fff}
+.tools{display:flex;gap:8px;margin-top:8px}
+.tools input{flex:1;min-width:0;font:inherit;padding:9px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+.tools button{font:inherit;font-weight:700;padding:9px 16px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+main{padding:22px 0 50px}
+.head{margin:8px 0 14px}
+.head h2{margin:0;font-size:1.5rem;color:var(--c)}
+.head small{color:var(--muted)}
+section.topic{margin:22px 0}
+section.topic h3{margin:0 0 10px;font-size:1.15rem;border-left:5px solid var(--c);padding-left:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.rule{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;break-inside:avoid;min-width:0}
+.rule h4{margin:0 0 4px;font-size:1.02rem;color:var(--c)}
+.rule p{margin:0 0 8px}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;border:1px solid var(--c);color:var(--c);border-radius:999px;padding:0 8px;margin-left:6px;vertical-align:middle;white-space:nowrap}
+.f{display:block;background:var(--fbg);border-radius:10px;padding:8px 12px;margin:6px 0;font-weight:600;font-size:.98rem;font-family:"Cambria Math","STIX Two Math","Inter",serif;overflow-x:auto;white-space:pre-wrap}
+.ex{display:block;background:var(--exbg);border:1px dashed var(--exline);border-radius:10px;padding:6px 12px;font-size:.93rem}
+.ex b{color:var(--muted)}
+.empty{color:var(--muted);text-align:center;padding:40px 0}
+.gtitle{margin:26px 0 4px;font-size:1.15rem;color:var(--c)}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:.9rem;padding:18px 0 30px;text-align:center}
+@media print{
+  .bar{display:none}
+  body{background:#fff;font-size:11pt}
+  header{background:none;color:#000;padding:0 0 10px}
+  .rule{border-color:#999}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Bac Tunisie — Règles de maths à retenir</h1>
+    <p>Formulaire de révision · 4ème année secondaire</p>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="wrap">
+    <div class="tabs" id="tabs" role="tablist"></div>
+    <div class="tools">
+      <input id="q" type="search" placeholder="Chercher une règle : limite, primitive, module, Bézout ..." aria-label="Recherche">
+      <button id="print" type="button">Imprimer</button>
+    </div>
+  </div>
+</div>
+
+<main class="wrap" id="main"></main>
+
+<footer>
+  <div class="wrap">
+    Aide-mémoire non officiel. Le contenu exact du programme varie selon la section (Mathématiques, Sciences expérimentales, Sciences techniques, Informatique, Économie et gestion) : la référence reste le manuel scolaire et votre professeur. Les étiquettes « Section Maths » signalent les chapitres propres à cette section.
+  </div>
+</footer>
+
+<script>
+// règle : [titre, explication, formule(s), exemple, étiquette]
+const THEMES = [
+{name:"Limites et continuité", sub:"Limites usuelles · asymptotes · théorème des valeurs intermédiaires", topics:[
+ ["Limites",[
+  ["Formes indéterminées","Quatre cas où l'on ne peut pas conclure directement : il faut transformer l'expression (factoriser, expression conjuguée, limite usuelle).","+∞ − ∞     0 × ∞     0/0     ∞/∞"],
+  ["Polynômes et fonctions rationnelles à l'infini","À l'infini, un polynôme a la même limite que son terme de plus haut degré ; une fonction rationnelle a la même limite que le quotient des termes de plus haut degré.","","lim (3x² − x)/(2x² + 5) = 3/2 quand x → +∞"],
+  ["Limites trigonométriques usuelles","Quand x tend vers 0 :","lim sin x / x = 1\nlim tan x / x = 1\nlim (1 − cos x) / x² = 1/2"],
+  ["Théorèmes de comparaison","Si u(x) ≤ f(x) ≤ v(x) et si u et v ont la même limite ℓ, alors f tend vers ℓ (gendarmes). Si f(x) ≥ u(x) et u → +∞, alors f → +∞.","|f(x) − ℓ| ≤ u(x) et lim u = 0  ⇒  lim f = ℓ"],
+  ["Limite d'une fonction composée","","lim f(x) = b en a  et  lim g(y) = c en b  ⇒  lim g∘f(x) = c en a"],
+ ]],
+ ["Asymptotes et branches infinies",[
+  ["Asymptotes","","lim f(x) = ±∞ en a  ⇒  asymptote verticale x = a\nlim f(x) = b en ±∞  ⇒  asymptote horizontale y = b\nlim [f(x) − (ax + b)] = 0 en ±∞  ⇒  asymptote oblique y = ax + b"],
+  ["Branches paraboliques","Quand f(x) → ±∞ en ±∞, on étudie f(x)/x.","f(x)/x → ±∞  ⇒  direction (Oy)\nf(x)/x → 0  ⇒  direction (Ox)\nf(x)/x → a ≠ 0 et f(x) − ax → ±∞  ⇒  direction y = ax"],
+ ]],
+ ["Continuité",[
+  ["Continuité en un point","","f continue en a  ⇔  lim f(x) = f(a) quand x → a"],
+  ["Théorème des valeurs intermédiaires","Si f est continue sur [a, b], alors pour tout k compris entre f(a) et f(b), l'équation f(x) = k admet au moins une solution dans [a, b]. Si de plus f est strictement monotone, la solution est unique.","f continue sur [a, b] et f(a)·f(b) < 0  ⇒  ∃ c ∈ ]a, b[ , f(c) = 0"],
+  ["Image d'un intervalle","L'image d'un intervalle par une fonction continue est un intervalle. Si f est continue et strictement croissante sur [a, b] :","f([a, b]) = [f(a), f(b)]\n(décroissante : [f(b), f(a)])"],
+ ]],
+]},
+{name:"Suites", sub:"Arithmétiques · géométriques · convergence · récurrence", topics:[
+ ["Suites de référence",[
+  ["Suite arithmétique de raison r","","uₙ₊₁ = uₙ + r\nuₙ = uₚ + (n − p)·r\nSomme = (nombre de termes) × (1er terme + dernier) / 2"],
+  ["Suite géométrique de raison q","","uₙ₊₁ = q·uₙ\nuₙ = uₚ · qⁿ⁻ᵖ\nSomme = (1er terme) × (1 − q^(nombre de termes)) / (1 − q) ,  q ≠ 1"],
+  ["Limite de qⁿ","","|q| < 1  ⇒  lim qⁿ = 0\nq = 1  ⇒  lim qⁿ = 1\nq > 1  ⇒  lim qⁿ = +∞\nq ≤ −1  ⇒  pas de limite"],
+ ]],
+ ["Étude d'une suite",[
+  ["Sens de variation","On étudie le signe de uₙ₊₁ − uₙ (ou on compare uₙ₊₁/uₙ à 1 si les termes sont strictement positifs).","uₙ₊₁ − uₙ ≥ 0 pour tout n  ⇒  (uₙ) croissante"],
+  ["Raisonnement par récurrence","1) Initialisation : vérifier la propriété au premier rang. 2) Hérédité : supposer la propriété vraie au rang n et la démontrer au rang n + 1. 3) Conclure."],
+  ["Convergence monotone","Toute suite croissante et majorée converge. Toute suite décroissante et minorée converge."],
+  ["Suite uₙ₊₁ = f(uₙ)","Si (uₙ) converge vers ℓ et si f est continue en ℓ, alors ℓ est solution de l'équation f(x) = x.","f(ℓ) = ℓ"],
+  ["Suites adjacentes","Si (uₙ) est croissante, (vₙ) décroissante et lim (vₙ − uₙ) = 0, alors les deux suites convergent vers la même limite.","","","Section Maths"],
+  ["Comparaison","","uₙ ≤ vₙ ≤ wₙ et lim uₙ = lim wₙ = ℓ  ⇒  lim vₙ = ℓ\n|uₙ − ℓ| ≤ vₙ et lim vₙ = 0  ⇒  lim uₙ = ℓ"],
+ ]],
+]},
+{name:"Dérivation", sub:"Dérivées usuelles · variations · accroissements finis · fonction réciproque", topics:[
+ ["Calcul des dérivées",[
+  ["Nombre dérivé et tangente","","f′(a) = lim [f(x) − f(a)] / (x − a)  quand x → a\nTangente en a :  y = f′(a)(x − a) + f(a)"],
+  ["Dérivées usuelles","","(xⁿ)′ = n·xⁿ⁻¹\n(1/x)′ = −1/x²\n(√x)′ = 1/(2√x)\n(sin x)′ = cos x\n(cos x)′ = −sin x\n(tan x)′ = 1 + tan² x"],
+  ["Opérations","","(u + v)′ = u′ + v′\n(k·u)′ = k·u′\n(u·v)′ = u′v + uv′\n(1/v)′ = −v′/v²\n(u/v)′ = (u′v − uv′)/v²"],
+  ["Fonctions composées","","(uⁿ)′ = n·u′·uⁿ⁻¹\n(√u)′ = u′/(2√u)\n(v∘u)′ = u′ × (v′∘u)\n[f(ax + b)]′ = a·f′(ax + b)"],
+ ]],
+ ["Applications",[
+  ["Sens de variation","Sur un intervalle : f′ ≥ 0 ⇒ f croissante ; f′ ≤ 0 ⇒ f décroissante ; f′ = 0 ⇒ f constante."],
+  ["Extremum et point d'inflexion","Si f′ s'annule en a en changeant de signe, f admet un extremum local en a. Si f″ s'annule en a en changeant de signe, le point d'abscisse a est un point d'inflexion."],
+  ["Demi-tangente verticale","Si le taux d'accroissement tend vers ±∞ en a, f n'est pas dérivable en a et la courbe admet une (demi-)tangente verticale."],
+  ["Théorème des accroissements finis","Si f est continue sur [a, b] et dérivable sur ]a, b[ :","∃ c ∈ ]a, b[ ,  f(b) − f(a) = f′(c)(b − a)\nSi f(a) = f(b) alors ∃ c , f′(c) = 0   (Rolle)"],
+  ["Inégalité des accroissements finis","","m ≤ f′ ≤ M sur [a, b]  ⇒  m(b − a) ≤ f(b) − f(a) ≤ M(b − a)\n|f′| ≤ k  ⇒  |f(b) − f(a)| ≤ k·|b − a|"],
+  ["Éléments de symétrie d'une courbe","","f(2a − x) = f(x)  ⇒  axe de symétrie x = a\nf(2a − x) + f(x) = 2b  ⇒  centre de symétrie (a, b)"],
+ ]],
+ ["Fonction réciproque",[
+  ["Bijection","Si f est continue et strictement monotone sur un intervalle I, alors f réalise une bijection de I sur J = f(I). Sa réciproque f⁻¹ est continue sur J, de même sens de variation que f.","y = f(x), x ∈ I  ⇔  x = f⁻¹(y), y ∈ J"],
+  ["Courbe et dérivée de la réciproque","Dans un repère orthonormé, les courbes de f et f⁻¹ sont symétriques par rapport à la droite y = x.","(f⁻¹)′(y) = 1 / f′(f⁻¹(y))   si f′(f⁻¹(y)) ≠ 0"],
+ ]],
+]},
+{name:"Primitives et intégrales", sub:"Primitives usuelles · intégration par parties · aires et volumes", topics:[
+ ["Primitives",[
+  ["Primitives usuelles","Chaque primitive est donnée à une constante près.","xⁿ  →  xⁿ⁺¹/(n + 1)   (n ≠ −1)\n1/x²  →  −1/x\n1/√x  →  2√x\n1/x  →  ln|x|\neˣ  →  eˣ\ncos x  →  sin x\nsin x  →  −cos x\n1 + tan² x  →  tan x"],
+  ["Formes composées","","u′·uⁿ  →  uⁿ⁺¹/(n + 1)   (n ≠ −1)\nu′/u²  →  −1/u\nu′/√u  →  2√u\nu′/u  →  ln|u|\nu′·eᵘ  →  eᵘ\nu′·cos u  →  sin u\nu′·sin u  →  −cos u"],
+  ["Primitive qui s'annule en a","Si f est continue sur I et a ∈ I, la fonction F ci-dessous est la primitive de f qui s'annule en a.","F(x) = ∫ₐˣ f(t) dt   et   F′(x) = f(x)"],
+ ]],
+ ["Intégrales",[
+  ["Définition","F étant une primitive de f sur [a, b] :","∫ₐᵇ f(x) dx = F(b) − F(a)"],
+  ["Propriétés","","∫ₐᵇ f + ∫ᵇᶜ f = ∫ₐᶜ f   (Chasles)\n∫ₐᵇ (αf + βg) = α∫ₐᵇ f + β∫ₐᵇ g\n∫ᵇₐ f = −∫ₐᵇ f\nf ≥ 0 et a ≤ b  ⇒  ∫ₐᵇ f ≥ 0\nf ≤ g et a ≤ b  ⇒  ∫ₐᵇ f ≤ ∫ₐᵇ g"],
+  ["Valeur moyenne","","μ = 1/(b − a) × ∫ₐᵇ f(x) dx\nm ≤ f ≤ M sur [a, b]  ⇒  m(b − a) ≤ ∫ₐᵇ f ≤ M(b − a)"],
+  ["Intégration par parties","u et v dérivables, à dérivées continues :","∫ₐᵇ u′v = [uv]ₐᵇ − ∫ₐᵇ uv′","∫₀¹ x·eˣ dx = [x·eˣ]₀¹ − ∫₀¹ eˣ dx = e − (e − 1) = 1"],
+  ["Fonction paire, impaire","","f paire  ⇒  ∫₋ₐᵃ f = 2∫₀ᵃ f\nf impaire  ⇒  ∫₋ₐᵃ f = 0"],
+  ["Aire et volume","En unités d'aire, l'aire entre deux courbes sur [a, b] ; en unités de volume, le solide engendré par la rotation de la courbe de f autour de (Ox).","Aire = ∫ₐᵇ |f(x) − g(x)| dx\nVolume = π ∫ₐᵇ [f(x)]² dx"],
+ ]],
+]},
+{name:"ln, exp et équations différentielles", sub:"Propriétés algébriques · limites · croissances comparées", topics:[
+ ["Logarithme népérien",[
+  ["Définition","ln est définie sur ]0, +∞[ ; c'est la primitive de 1/x qui s'annule en 1. Elle est strictement croissante.","ln 1 = 0     ln e = 1\n(ln x)′ = 1/x\n(ln u)′ = u′/u   (u > 0)"],
+  ["Propriétés algébriques","Pour a > 0 et b > 0 :","ln(ab) = ln a + ln b\nln(a/b) = ln a − ln b\nln(1/a) = −ln a\nln(aⁿ) = n·ln a\nln √a = ½ ln a"],
+  ["Limites de ln","","lim ln x = +∞  en +∞\nlim ln x = −∞  en 0⁺\nlim ln x / x = 0  en +∞\nlim x·ln x = 0  en 0⁺\nlim ln(1 + x) / x = 1  en 0"],
+  ["Équations et inéquations","Pour a > 0 et b > 0 :","ln a = ln b  ⇔  a = b\nln a < ln b  ⇔  a < b\nln x = k  ⇔  x = eᵏ"],
+ ]],
+ ["Exponentielle",[
+  ["Définition","exp est la réciproque de ln ; elle est définie sur ℝ, strictement croissante et strictement positive.","y = eˣ  ⇔  x = ln y   (y > 0)\ne⁰ = 1     eˣ > 0\nln(eˣ) = x     e^(ln x) = x  (x > 0)\n(eˣ)′ = eˣ     (eᵘ)′ = u′·eᵘ"],
+  ["Propriétés algébriques","","e^(a+b) = eᵃ · eᵇ\ne^(a−b) = eᵃ / eᵇ\ne^(−a) = 1/eᵃ\n(eᵃ)ⁿ = e^(na)"],
+  ["Limites de exp","","lim eˣ = +∞  en +∞\nlim eˣ = 0  en −∞\nlim eˣ / x = +∞  en +∞\nlim x·eˣ = 0  en −∞\nlim (eˣ − 1) / x = 1  en 0"],
+  ["Croissances comparées","À l'infini, l'exponentielle l'emporte sur les puissances, qui l'emportent sur le logarithme (n > 0).","lim eˣ / xⁿ = +∞  en +∞\nlim xⁿ·eˣ = 0  en −∞\nlim ln x / xⁿ = 0  en +∞\nlim xⁿ·ln x = 0  en 0⁺"],
+  ["Puissances réelles","Pour a > 0 :","aˣ = e^(x·ln a)\n(aˣ)′ = ln a · aˣ"],
+ ]],
+ ["Équations différentielles",[
+  ["y′ = ay","","Solutions :  y = k·e^(ax) ,  k ∈ ℝ"],
+  ["y′ = ay + b  (a ≠ 0)","","Solutions :  y = k·e^(ax) − b/a ,  k ∈ ℝ","y′ = 2y + 6  ⇒  y = k·e^(2x) − 3"],
+  ["y″ + ω²y = 0","","Solutions :  y = A·cos(ωx) + B·sin(ωx) ,  A, B ∈ ℝ"],
+  ["Condition initiale","Une condition initiale y(x₀) = y₀ (et y′(x₀) pour le second ordre) détermine une solution unique : on l'utilise pour calculer les constantes."],
+ ]],
+]},
+{name:"Nombres complexes", sub:"Formes algébrique, trigonométrique, exponentielle · équations · géométrie", topics:[
+ ["Formes d'un nombre complexe",[
+  ["Forme algébrique","","z = a + ib ,  i² = −1\nRe(z) = a ,  Im(z) = b\nz̄ = a − ib\n|z| = √(a² + b²)\nz·z̄ = |z|²"],
+  ["Conjugué et module","","conj(z + z′) = z̄ + z̄′     conj(z·z′) = z̄·z̄′\n|z·z′| = |z|·|z′|     |z/z′| = |z|/|z′|\n|zⁿ| = |z|ⁿ     |z + z′| ≤ |z| + |z′|\nz réel  ⇔  z = z̄\nz imaginaire pur  ⇔  z = −z̄"],
+  ["Forme trigonométrique et exponentielle","Pour z ≠ 0, r = |z| et θ = arg z :","z = r(cos θ + i sin θ) = r·e^(iθ)\ncos θ = a/r     sin θ = b/r"],
+  ["Arguments","Égalités à 2π près :","arg(z·z′) = arg z + arg z′\narg(z/z′) = arg z − arg z′\narg(zⁿ) = n·arg z\narg(z̄) = −arg z\narg(−z) = arg z + π"],
+  ["Formules de Moivre et d'Euler","","(cos θ + i sin θ)ⁿ = cos nθ + i sin nθ\ncos θ = (e^(iθ) + e^(−iθ)) / 2\nsin θ = (e^(iθ) − e^(−iθ)) / (2i)"],
+ ]],
+ ["Équations",[
+  ["Équation du second degré","az² + bz + c = 0 avec a ≠ 0. Soit Δ = b² − 4ac et δ une racine carrée de Δ.","z₁ = (−b + δ)/(2a)     z₂ = (−b − δ)/(2a)\nz₁ + z₂ = −b/a     z₁·z₂ = c/a","Δ = −4 : δ = 2i"],
+  ["Racines carrées de Δ = α + iβ","On cherche δ = x + iy avec δ² = Δ :","x² − y² = α\nx² + y² = |Δ|\n2xy = β  (signe de xy)"],
+  ["Racines n-ièmes","Les solutions de zⁿ = r·e^(iθ) (r > 0) sont :","zₖ = ⁿ√r · e^(i(θ + 2kπ)/n) ,  k = 0, 1, …, n − 1","Leurs images forment un polygone régulier à n côtés."],
+ ]],
+ ["Complexes et géométrie",[
+  ["Distances et angles","A, B, C d'affixes z_A, z_B, z_C :","AB = |z_B − z_A|\n(AB⃗ , AC⃗) = arg[(z_C − z_A)/(z_B − z_A)]\nMilieu de [AB] :  (z_A + z_B)/2"],
+  ["Alignement et orthogonalité","Soit Z = (z_C − z_A)/(z_B − z_A) :","Z réel  ⇔  A, B, C alignés\nZ imaginaire pur  ⇔  (AB) ⊥ (AC)\nZ = ±i  ⇔  ABC rectangle isocèle en A"],
+  ["Ensembles de points","","|z − z_A| = r  :  cercle de centre A, rayon r\n|z − z_A| = |z − z_B|  :  médiatrice de [AB]"],
+ ]],
+]},
+{name:"Géométrie", sub:"Isométries · similitudes · coniques · géométrie dans l'espace", topics:[
+ ["Isométries et similitudes",[
+  ["Isométries du plan","Une isométrie conserve les distances. Déplacements (conservent les angles orientés) : translations et rotations. Antidéplacements : symétries orthogonales et symétries glissantes.","","","Section Maths"],
+  ["Composée de deux symétries orthogonales","","Axes parallèles  ⇒  translation de vecteur 2·(vecteur d'un axe à l'autre)\nAxes sécants en O  ⇒  rotation de centre O et d'angle 2·(D , D′)","","Section Maths"],
+  ["Écritures complexes","","Translation :  z′ = z + b\nRotation (centre Ω, angle θ) :  z′ − ω = e^(iθ)(z − ω)\nHomothétie (centre Ω, rapport k) :  z′ − ω = k(z − ω)"],
+  ["Similitude directe","z′ = az + b avec a ≠ 0. Une similitude de rapport k multiplie les distances par k et les aires par k².","Rapport :  k = |a|\nAngle :  θ = arg a\nCentre (si a ≠ 1) :  ω = b/(1 − a)","","Section Maths"],
+  ["Similitude indirecte","","z′ = a·z̄ + b ,  a ≠ 0 ,  rapport |a|","","Section Maths"],
+ ]],
+ ["Coniques",[
+  ["Définition par foyer et directrice","Ensemble des points M tels que MF = e·MH, où H est le projeté orthogonal de M sur la directrice.","e = 1 : parabole\ne < 1 : ellipse\ne > 1 : hyperbole","","Section Maths"],
+  ["Parabole","","y² = 2px\nFoyer F(p/2 , 0)     Directrice x = −p/2\nMF = MH","","Section Maths"],
+  ["Ellipse","Avec a > b > 0 :","x²/a² + y²/b² = 1\nc² = a² − b²     e = c/a\nFoyers (±c , 0)     Directrices x = ±a²/c\nMF + MF′ = 2a","","Section Maths"],
+  ["Hyperbole","","x²/a² − y²/b² = 1\nc² = a² + b²     e = c/a\nFoyers (±c , 0)     Asymptotes y = ±(b/a)x\n|MF − MF′| = 2a","","Section Maths"],
+ ]],
+ ["Géométrie dans l'espace",[
+  ["Produit scalaire","Dans un repère orthonormé, u(x, y, z) et v(x′, y′, z′) :","u·v = xx′ + yy′ + zz′\n‖u‖ = √(x² + y² + z²)\nu ⊥ v  ⇔  u·v = 0"],
+  ["Produit vectoriel","u ∧ v est orthogonal à u et à v ; il est nul si et seulement si u et v sont colinéaires.","u ∧ v = (yz′ − zy′ , zx′ − xz′ , xy′ − yx′)\nAire du triangle ABC = ½ ‖AB⃗ ∧ AC⃗‖"],
+  ["Plan","Le plan d'équation ax + by + cz + d = 0 a pour vecteur normal n(a, b, c).","Distance de A(x₀, y₀, z₀) au plan :\nd = |ax₀ + by₀ + cz₀ + d| / √(a² + b² + c²)"],
+  ["Droite","Droite passant par A(x₀, y₀, z₀) de vecteur directeur u(α, β, γ) :","x = x₀ + αt\ny = y₀ + βt\nz = z₀ + γt ,  t ∈ ℝ"],
+  ["Sphère","Sphère de centre I(a, b, c) et de rayon R. Soit d la distance de I à un plan P.","(x − a)² + (y − b)² + (z − c)² = R²\nd > R : pas de point commun\nd = R : plan tangent\nd < R : cercle de rayon √(R² − d²)"],
+  ["Volume du tétraèdre","","V = (1/6) |(AB⃗ ∧ AC⃗) · AD⃗| = (1/3) × aire de base × hauteur"],
+ ]],
+]},
+{name:"Arithmétique", sub:"Divisibilité · congruences · PGCD · Bézout et Gauss", topics:[
+ ["Divisibilité et congruences",[
+  ["Division euclidienne","Pour a entier et b entier naturel non nul, il existe un unique couple (q, r) tel que :","a = bq + r   avec   0 ≤ r < b","","Maths · Info"],
+  ["Congruences","","a ≡ b [n]  ⇔  n divise a − b\na ≡ b [n] et c ≡ d [n]  ⇒  a + c ≡ b + d [n]\na ≡ b [n] et c ≡ d [n]  ⇒  ac ≡ bd [n]\na ≡ b [n]  ⇒  aᵏ ≡ bᵏ [n]","2³ ≡ 1 [7] donc 2³⁰ = (2³)¹⁰ ≡ 1 [7]","Maths · Info"],
+  ["Nombres premiers","Tout entier n ≥ 2 se décompose de façon unique en produit de facteurs premiers. Pour tester si n est premier, il suffit d'essayer les diviseurs premiers p tels que p² ≤ n.","","","Maths · Info"],
+ ]],
+ ["PGCD et théorèmes",[
+  ["PGCD et algorithme d'Euclide","Le PGCD est le dernier reste non nul dans les divisions successives.","a = bq + r  ⇒  pgcd(a, b) = pgcd(b, r)\npgcd(a, b) × ppcm(a, b) = |ab|","","Maths · Info"],
+  ["Théorème de Bézout","","a et b premiers entre eux  ⇔  ∃ u, v ∈ ℤ ,  au + bv = 1\nd = pgcd(a, b)  ⇒  ∃ u, v ∈ ℤ ,  au + bv = d","","Section Maths"],
+  ["Théorème de Gauss","","a divise bc et pgcd(a, b) = 1  ⇒  a divise c\na et b divisent n, pgcd(a, b) = 1  ⇒  ab divise n","","Section Maths"],
+  ["Équation ax + by = c","Elle admet des solutions entières si et seulement si pgcd(a, b) divise c. Méthode : une solution particulière, puis soustraction et théorème de Gauss.","","","Section Maths"],
+  ["Petit théorème de Fermat","p premier et a non divisible par p :","aᵖ⁻¹ ≡ 1 [p]\naᵖ ≡ a [p]  pour tout entier a","","Section Maths"],
+ ]],
+]},
+{name:"Probabilités et statistiques", sub:"Dénombrement · probabilités conditionnelles · lois · régression", topics:[
+ ["Dénombrement",[
+  ["Listes, arrangements, combinaisons","","p-listes (avec répétition) :  nᵖ\nPermutations :  n! = 1 × 2 × … × n\nArrangements :  Aₙᵖ = n! / (n − p)!\nCombinaisons :  Cₙᵖ = n! / (p!(n − p)!)","Tirages successifs avec remise : nᵖ ; sans remise : Aₙᵖ ; simultanés : Cₙᵖ"],
+  ["Propriétés des combinaisons","","Cₙ⁰ = Cₙⁿ = 1     Cₙᵖ = Cₙⁿ⁻ᵖ\nCₙᵖ = Cₙ₋₁ᵖ + Cₙ₋₁ᵖ⁻¹\n(a + b)ⁿ = Σ Cₙᵏ aⁿ⁻ᵏ bᵏ   (k de 0 à n)"],
+ ]],
+ ["Probabilités",[
+  ["Règles de base","","0 ≤ p(A) ≤ 1     p(Ω) = 1\np(Ā) = 1 − p(A)\np(A ∪ B) = p(A) + p(B) − p(A ∩ B)\nÉquiprobabilité :  p(A) = cas favorables / cas possibles"],
+  ["Probabilité conditionnelle","","p(A | B) = p(A ∩ B) / p(B)\np(A ∩ B) = p(B) × p(A | B)\nA et B indépendants  ⇔  p(A ∩ B) = p(A) × p(B)"],
+  ["Probabilités totales et formule de Bayes","Si B₁, …, Bₙ forment une partition de l'univers :","p(A) = p(B₁)·p(A | B₁) + … + p(Bₙ)·p(A | Bₙ)\np(Bᵢ | A) = p(Bᵢ)·p(A | Bᵢ) / p(A)"],
+  ["Variable aléatoire","","E(X) = Σ xᵢ·pᵢ\nV(X) = E(X²) − [E(X)]²\nσ(X) = √V(X)"],
+  ["Loi binomiale B(n, p)","n épreuves identiques et indépendantes, X = nombre de succès :","p(X = k) = Cₙᵏ pᵏ (1 − p)ⁿ⁻ᵏ\nE(X) = np     V(X) = np(1 − p)"],
+  ["Lois continues","","Uniforme sur [a, b] :  p(c ≤ X ≤ d) = (d − c)/(b − a)\nExponentielle de paramètre λ :\np(X ≤ t) = 1 − e^(−λt)     p(X ≥ t) = e^(−λt)"],
+ ]],
+ ["Statistiques à deux variables",[
+  ["Point moyen et covariance","","G(x̄ , ȳ)\ncov(X, Y) = (1/n) Σ xᵢyᵢ − x̄·ȳ\nV(X) = (1/n) Σ xᵢ² − x̄²"],
+  ["Droite de régression de y en x","Elle passe par le point moyen G.","y = ax + b\na = cov(X, Y) / V(X)\nb = ȳ − a·x̄"],
+  ["Coefficient de corrélation","Compris entre −1 et 1 ; plus |r| est proche de 1, meilleur est l'ajustement affine.","r = cov(X, Y) / (σ(X)·σ(Y))"],
+ ]],
+]},
+{name:"Rappels utiles", sub:"Trigonométrie · second degré · identités", topics:[
+ ["Trigonométrie",[
+  ["Valeurs remarquables","","x :      0     π/6     π/4     π/3     π/2\nsin x :  0     1/2     √2/2    √3/2    1\ncos x :  1     √3/2    √2/2    1/2     0"],
+  ["Formules de base","","cos² x + sin² x = 1\n1 + tan² x = 1/cos² x\ncos(−x) = cos x     sin(−x) = −sin x\ncos(π − x) = −cos x     sin(π − x) = sin x\ncos(π/2 − x) = sin x     sin(π/2 − x) = cos x"],
+  ["Formules d'addition et de duplication","","cos(a + b) = cos a cos b − sin a sin b\ncos(a − b) = cos a cos b + sin a sin b\nsin(a + b) = sin a cos b + cos a sin b\nsin(a − b) = sin a cos b − cos a sin b\ncos 2a = cos² a − sin² a = 2cos² a − 1 = 1 − 2sin² a\nsin 2a = 2 sin a cos a"],
+  ["Équations trigonométriques","Avec k ∈ ℤ :","cos x = cos a  ⇔  x = a + 2kπ  ou  x = −a + 2kπ\nsin x = sin a  ⇔  x = a + 2kπ  ou  x = π − a + 2kπ\ntan x = tan a  ⇔  x = a + kπ"],
+ ]],
+ ["Algèbre",[
+  ["Second degré dans ℝ","ax² + bx + c avec a ≠ 0 et Δ = b² − 4ac.","Δ > 0 :  x = (−b ± √Δ)/(2a)\nΔ = 0 :  x = −b/(2a)\nΔ < 0 :  pas de racine réelle\nLe trinôme est du signe de a, sauf entre les racines."],
+  ["Identités remarquables","","(a + b)² = a² + 2ab + b²\n(a − b)² = a² − 2ab + b²\na² − b² = (a − b)(a + b)\na³ − b³ = (a − b)(a² + ab + b²)\na³ + b³ = (a + b)(a² − ab + b²)"],
+  ["Valeur absolue","Pour r > 0 :","|x − a| ≤ r  ⇔  a − r ≤ x ≤ a + r\n|x + y| ≤ |x| + |y|\n√(x²) = |x|"],
+ ]],
+]}
+];
+
+const $ = s => document.querySelector(s);
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const norm = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+
+function ruleHTML(r){
+  const [t,d,f,ex,tag] = r;
+  let h = `<article class="rule"><h4>${esc(t)}${tag?`<span class="tag">${esc(tag)}</span>`:""}</h4>`;
+  if(d) h += `<p>${esc(d)}</p>`;
+  if(f) h += `<span class="f">${esc(f)}</span>`;
+  if(ex) h += `<span class="ex"><b>Exemple : </b>${esc(ex)}</span>`;
+  return h + `</article>`;
+}
+
+function themeHTML(g, filter){
+  let out = "";
+  for(const [title, rules] of g.topics){
+    const rs = filter ? rules.filter(r => norm(title + " " + r.join(" ")).includes(filter)) : rules;
+    if(!rs.length) continue;
+    out += `<section class="topic"><h3>${esc(title)}</h3><div class="grid">${rs.map(ruleHTML).join("")}</div></section>`;
+  }
+  return out;
+}
+
+let current = 0;
+
+function render(){
+  const q = norm($("#q").value.trim());
+  const main = $("#main");
+  if(q){
+    let html = "";
+    THEMES.forEach((g,i) => {
+      const h = themeHTML(g, q);
+      if(h) html += `<div style="--c:var(--g${i%9+1})"><h2 class="gtitle">${esc(g.name)}</h2>${h}</div>`;
+    });
+    main.innerHTML = html || `<p class="empty">Aucune règle ne correspond à « ${esc($("#q").value.trim())} ».</p>`;
+  } else {
+    const g = THEMES[current];
+    main.innerHTML = `<div style="--c:var(--g${current%9+1})">
+      <div class="head"><h2>${esc(g.name)}</h2><small>${esc(g.sub)}</small></div>${themeHTML(g)}</div>`;
+  }
+  document.querySelectorAll(".tab").forEach(b =>
+    b.setAttribute("aria-selected", String(!q && +b.dataset.i === current)));
+}
+
+$("#tabs").innerHTML = THEMES.map((g,i) =>
+  `<button class="tab" role="tab" data-i="${i}" style="--c:var(--g${i%9+1})">${esc(g.name)}</button>`).join("");
+
+$("#tabs").addEventListener("click", e => {
+  const b = e.target.closest(".tab"); if(!b) return;
+  current = +b.dataset.i; $("#q").value = "";
+  history.replaceState(null, "", "#t" + (current+1));
+  render(); window.scrollTo({top: 0});
+});
+$("#q").addEventListener("input", render);
+$("#print").addEventListener("click", () => window.print());
+
+const m = location.hash.match(/^#t(\d+)$/);
+if(m && +m[1] >= 1 && +m[1] <= THEMES.length) current = +m[1] - 1;
+render();
+</script>
+</body>
+</html>
